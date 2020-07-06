@@ -6,8 +6,12 @@ library(data.table)
 library(lubridate)
 library(caret)
 
-train <- read_csv("./train.csv", col_names=TRUE) 
+# Read csv files into global environment
+train <- read_csv("./train.csv", col_names=TRUE) %>% 
+  mutate_if(is.character, as.factor)
 names(train) <- tolower(names(train))
 
 test <- read_csv("./test.csv", col_names=TRUE)
 names(test) <- tolower(names(test))
+
+summary(train)
